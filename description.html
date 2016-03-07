@@ -1,0 +1,11 @@
+<template name="description">
+  <h4>High-level overview</h4>
+  <p>Our system takes in the names of two songs and spits out a mashup where the vocals of one overlays the instrumentation of the other. We achieve this using source separation, beat structure matching, and pitch shifting.</p>
+  <h4>Details</h4>
+  <ol>We have created a database of .wav files of the choruses of 30 popular songs that have the same I-V-vi-IV chord progression (e.g. "Don't Stop Believing" by Journey and "Paparazzi" by Lady Gaga). These .wav files are obviously not necessarily the same length or key. Here is how we transform them into a mashup:
+    <li>We separate them into their instrumentation background and vocal foreground using FASST.</li>
+    <li>We use beat tracking to calculate the BPM of each song, and stretch them out so that they match using the built-in librosa functions, like time_stretch or phase_vocoder.</li>
+    <li>OPTIONAL: if the above steps go well, we will detect the key of each song using a chromagram and modulate them so that they are the same using librosa’s pitch shifting functions.</li>
+    <li>We layer the transformed background and transformed foreground over one another to make one song.</li>
+  </ol>
+</template>
